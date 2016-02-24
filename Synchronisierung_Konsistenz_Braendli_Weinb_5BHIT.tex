@@ -63,10 +63,10 @@
 %\vspace{-0.5cm}
 \section{Disaster Recovery}
 
-\subsection{Grundlagen \& Definitionen \cite{bookone} \cite{intro} \cite{intro2} \cite{intro3}}
+\subsection{Grundlagen \& Definitionen \cite{bookone} \cite{intro} \cite{intro2} \cite{intro3} \cite{downtime}}
 Disaster Recovery (dt. auch Katastrophenwiederherstellung), im Folgenden auch \textit{DR} genannt, beschreibt die Vorbereitung und Reaktion auf sogenannte Katastrophen, die abgespeicherte Daten und Lauffähigkeit eines IT-Systems betreffen. In diesem Bereich der Sicherheitsplanung ist mit negativen Ereignissen all das gemeint, was den Betrieb eines Unternehmens gefährdet. Hierzu gehören Cyberattacken, Infrastrukturausfälle ebenso wie Naturkatastrophen. DR umfasst beispielsweise Schritte zur Wiederherstellung von Server oder Mainframes mit Backups oder ferner die Bereitstellung von LANs für die unmittelbaren geschäftlichen Bedürfnisse. \\
 
-Anhand einiger Beispiele von Oxford Knowledge wird die Sinnhaftigkeit der Technologie bewiesen: \\
+Anhand einiger Beispiele von Oxford Knowledge wird die Sinnhaftigkeit der Technologie bewiesen:
 
 \begin{itemize}
 	\item 93\% der befragten Firmen, die ihre Datenzentren für 10 oder mehr Tage aufgrund eines Desasters nicht erreichen konnten, mussten innerhalb eines Jahres nach dem erstmaligen Auftreten Konkurs anmelden.
@@ -80,6 +80,8 @@ Anhand einiger Beispiele von Oxford Knowledge wird die Sinnhaftigkeit der Techno
 In dessen Folge dokumentiert ein Disaster Recovery Plan, im Folgenden auch DRP genannt, dann konkret Richtlinien, Verfahren und Maßnahmen, um die Störung eines Unternehmens im Falle eines Desasters zu begrenzen, und möglichst innerhalb eines bestimmten Zeitrahmens wieder zurück zum Normalzustand überzugehen. Wie bei einer Katastrophe macht das Ereignis die Fortführung des normalen Geschäftsbetriebs unmöglich. \\
 Falls ein DRP besteht, kann das Unternehmen die Auswirkungen des Desasters minimieren und ihre geschäftskritischen Prozesse schnell fortführen. Die Disaster-Recovery-Planung beinhaltet in der Regel eine Analyse der Geschäftsprozesse und des Bedarfs. Sie kann auch einen Schwerpunkt zur Prävention beinhalten. Disaster Recovery ist ein wichtiger Aspekt von Enterprise-Computing. Die Unterbrechung des Dienstes oder der Verlust von Daten kann sich schwerwiegend auf die Finanzen auswirken, sei es direkt oder durch den etwaigen darauffolgenden Imageverlust. \\
 Die internationale Norm für Sicherheitsmanagement erlangt immer mehr Aufmerksamkeit, da viele größere Organisationen ihre IT-Service-Provider \textbf{ISO27001}-konform machen.
+
+\newpage
 
 \subsubsection{Business Continuity}
 
@@ -102,17 +104,37 @@ Einige Beispiele:
 
 Die Liste könnte noch weiter fortgeführt werden, wichtig ist, dass möglichst alle wichtigen und für die Umgebung relevanten Faktoren berücksichtigt werden. Kleinere Disaster treten immer häufiger bzw. mit einer größeren Wahrscheinlichkeit auf.
 
+\newpage
+
 \subsubsection{Problem der Downtime, Kosten, max. Häufigkeit}
+
+Das Beispiel des Webblogs "Interxion" zeigt mögliche Kosten bei einem internationaln Marktführer wie etwa Facebook: \\
+Als Facebook am 1. August 2014 großteils nicht erreichbar war, riefen hunderte amerikanischer Nutzer ihren nächstgelegenen Polizeiposten an. Die Downtime dauerte zwar nur 20 Minuten, soll das Unternehmen aber immerhin 500.000\$ gekostet haben. Berechnet hat dies "The Wire" aufgrund der Werbeeinnahmen von Facebook, die im Jahr 2,91 Milliarden\$ betragen – oder 22.453\$ pro Minute. Es wird geschätzt, dass die wahren Kosten eines solchen Ausfalls weit höher liegen. Heikel dabei ist der Ruf des Unternehmens: Nicht nur Nutzer, auch diejenigen, die den Dienst finanzieren – die Werbetreibenden – bauen auf dessen Zuverlässigkeit. Jeder Nutzer, der wegen einer Downtime Facebook unfreiwilig den Rücken kehrt, bedeutet für die Werber ein verlorenes Mitglied ihrer Zielgruppe. In einer aktuellen Studie schätzen Unternehmen ihre Kosten für eine Stunde Ausfallzeit auf mindestens 20.000 \$, 20\% der Unternehmen auf über 100.000 \$. Natürlich spielt es eine Rolle, in welcher Branche das Unternehmen tätig ist, und wieviele Zugriffe auf Ihre Services erfolgen. Die Kostenberechnung für eine Server-Downtime ist ein komplexes Unterfangen –  nur den Verlust der Werbeinnahmen in Betracht zu ziehen, wie es im Fall Facebook gemacht wurde, greift sicher noch zu wenig weit.
 
 \subsection{Aufstellen eines DRP}
 
-\subsubsection{Vorbereitende Schritte}
-
-\subsubsection{Datenanalyse, Risikoanalyse}
+Ein Disaster Recovery Plan muss Desasteridentifikation, Kommunikationsrichtlinien, 
+das Koordinieren der Prozesse, etwaige Ausweichmöglichkeiten, Prozesse, um wieder 
+zum Normalzustand zurückzukehren und einen Feldtest des Plans sowie Wartungsroutinen beinhalten. 
+Es muss kurz ein funktioneller Plan sein, der alle Prozessketten richtig adressiert, um die 
+Systeme wiederherzustellen, inkl. eines Zuständigen zur stetigen Wartung des Plans.
+Es empfiehlt sich außerdem ein eigenes Disaster Response-Team auszuweisen, abhängig von den
+gegebenen Anforderungen. Wenn der Plan entworfen wird, ist es wichtig eine Priorisierung aufzustellen,
+welche Infrastruktur bzw. Systeme für den Erhalt der Einsatzfähigkeit zwingend nötig sind. Ein erstes Maß
+ist die Wiederherstellung der voraussetzenden Umgebungen, etwa ein funktionierendes internes Netzwerk. Ein 
+zweiter Punkt ist die auferlegte nötige Uptime für jedes System. Diejenigen, die eine 24/7-Uptime erreichen sollen
+sind den weniger prioren vorzuziehen.
+Es ist auch zu bedenken, dass bestimmte Workarounds effektiv laufen sollen, ohne noch größere Probleme
+zu verursachen. Der Ersteller des Plans muss möglichst viele Daten sammeln über alle verwendeten Systeme,
+sowie Abhängigkeiten untereinander abbilden und miteinander in Konflikt stehende, gleichrangige Priorisierungen klären.
 
 \subsection{Schaffung eines zuverlässigen Systems}
 
-\subsection{Disaster Recovery-Techniken}
+\subsection{Disaster Recovery: Techniken}
+
+\subsubsection{Traditional Disaster Recovery}
+
+\subsubsection{Disaster Recovery as a service}
 
 \clearpage
 
