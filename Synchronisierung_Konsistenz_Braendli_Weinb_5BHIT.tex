@@ -103,9 +103,7 @@ Einige Beispiele:
 \end{itemize}
 
 Die Liste könnte noch weiter fortgeführt werden, wichtig ist, dass möglichst alle wichtigen und für die Umgebung relevanten Faktoren berücksichtigt werden. Kleinere Disaster treten immer häufiger bzw. mit einer größeren Wahrscheinlichkeit auf. \\
-So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheerendste Auswirkung. Die Gefahr besteht auch darin, 
-
-\newpage
+So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheerendste Auswirkung.Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Wenn ein Knoten ausfällt, übernehmen die übrigen Knoten die Prozesse des ausgefallenen Knotens, es gibt praktisch keinerlei Ausfallzeiten, eventuell jedoch starke Einbußen in der Performance, da die gleiche Last nun von weniger Systemen übernommen werden muss.
 
 \subsubsection{Problem der Downtime, Kosten, max. Häufigkeit}
 
@@ -137,15 +135,19 @@ sowie Abhängigkeiten untereinander abbilden und miteinander in Konflikt stehend
 
 \subsubsection{Clustersysteme}
 
-
+Wenn Systeme 24/7 verfügbar sein müssen, wird oft eine Clusterlösung herangezogen. Hier unterscheidet man zwischen zwei Varianten, Failover-Clustering und 'echtem' Clustering. Bei der Failover-Technologie mit zwei oder mehreren Netzwerkdiensten übernimmt ein Zweitsystem bei einseitigem Ausfall des Primärsystems. Echtes Clustering, sprich ein Aktiv/Aktiv-Cluster, wird bezeichnet einen Rechnerverbund, in dem mehrere (meistens > 2) Nodes gleichzeitig aktiv sind. Computercluster werden neben der Verteilung der Rechenleistung auch u. a. zur Sicherstellung der Verfügbarkeit von diversen Ressourcen wie Netzwerke, Applikationen etc. verwendet. Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Beide Herangehensweisen beinhalten keinen DRP. Da sie "100\% der Zeit" verfügbar sind (aus Sicht des Kunden), gibt es per se keine Katastrophen, die die Business Continuity beeinträchtigen. Der einzige Nachteil: Solche Lösungen sind meistens sehr teuer in Aufbau und Wartung, und daher eher nur von großen Unternehmen mit großem Budget zu bewerkstelligen.
 
 \subsubsection{Wieso dann DR?}
+
+Für Systeme, die keine 100\%-ige Verfügbarkeit benötigen, oder das Budget es nicht anders vorsieht, ist DR die bessere Wahl.
 
 \subsection{Disaster Recovery: Techniken}
 
 \subsubsection{Traditional Disaster Recovery}
 
 \subsubsection{Disaster Recovery as a service}
+
+\subsubsection{Beispiel MySQL}
 
 \clearpage
 
