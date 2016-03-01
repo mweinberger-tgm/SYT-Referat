@@ -138,7 +138,7 @@ zweiter Punkt ist die auferlegte nötige Uptime für jedes System. Diejenigen, d
 sind den weniger prioren vorzuziehen.
 Es ist auch zu bedenken, dass bestimmte Workarounds effektiv laufen sollen, ohne noch größere Probleme
 zu verursachen. Der Ersteller des Plans muss möglichst viele Daten sammeln über alle verwendeten Systeme,
-sowie Abhängigkeiten untereinander abbilden und miteinander in Konflikt stehende, gleichrangige Priorisierungen klären. Ein DRP wird nicht automatisch ausgeführt, sondern händisch, angepasst an den Bedarfsfall.  \\
+sowie Abhängigkeiten untereinander abbilden und miteinander in Konflikt stehende, gleichrangige Priorisierungen klären. Ein DRP wird nicht automatisch ausgeführt, sondern händisch, angepasst an den Bedarfsfall.
 
 \subsection{Schaffung eines zuverlässigen Systems \cite{bookthree}}
 
@@ -181,16 +181,37 @@ Wie auch hier sind die aufkommenden Kosten von niedrig (Tier 0) bis hoch (Tier 7
 	\subsubsection{Tier 4: Point-in-time copies}
 	Tier 4-Lösungen werden oft von Unternehmen verwendet, die hohen Wert auf Datenkorrektheit und schneller Wiederherstellung legen als die unteren Stufen bereitstellen. Eher als das Auslagern von Speichertapes wie bei 0-3 gegeben, integriert diese Stufe Sicherungen auf Basis von Disks (also Festplatten). Immer noch sind mehrere Stunden Datenverlust möglich, jedoch ist es einfacher Point-in-Time-Backups (PiT, jeweils zu einem festgelegten Zeitpunkt) zu erstellen mit einer höheren Frequenz als Tape-Sicherungen, sogar wenn elektronisch gekapselt.
 	\subsubsection{Tier 5: Transaction integrity} 
-	Tier 5 wird verwendet, wenn es zwingend erforderlich ist, dass Daten konsistent sind zwischen Produktivsystem und dem Wiederherstellungs-Remoteserver. Bei einem solchen Aufbau kommt es zu kaum bis gar keinem Datenverlust, aber die Verfügbarkeit dieser Funktionalität ist stark abhängig von der verwendeten Implementierung. \newpage
+	Tier 5 wird verwendet, wenn es zwingend erforderlich ist, dass Daten konsistent sind zwischen Produktivsystem und dem Wiederherstellungs-Remoteserver. Bei einem solchen Aufbau kommt es zu kaum bis gar keinem Datenverlust, aber die Verfügbarkeit dieser Funktionalität ist stark abhängig von der verwendeten Implementierung.
 	\subsubsection{Tier 6: Zero or near-Zero data loss} 
 	Tier 6 hält das höchste Maß an Datenrichtigkeit aufrecht. Dieser Ansatz wird eingesetzt von Systemen, in denen wenig oder gar kein Datenverlust vertretbar ist, und wo Daten für den weiteren Gebrauch schnell wiederhergesellt werden müssen. Solche Lösungen haben keine Abhängigkeit von Anwendungen oder Mitarbeitern, um Datenkonsistenz zu gewährleisten. \\
 	Tier 6 erfordert eine Form von Disk Mirroring zu einem Remoteserver, hierfür gibt es verschiedenste synchrone oder asynchrone Implementierungen von vielen Herstellern. Jede Herangehenweise ist leicht anders, mit verschiedenen Möglichkeiten und anderen Recovery Point/Recovery Time-Anforderungen. In den manchen Fällen wird jedoch auch eine Art von Tape-Speicherung benötigt, abhängig von dem erforderlichen Speicherplatz, der von Backup in Anspruch genommen wird.
 	\subsubsection{Tier 7: Highly automated, business integrated solution} 
 	Das höchste Level nimmt all die Hauptkomponenten von Tier 6 zusammen und fügt die Intgration von Automation hinzu. Das erlaubt Tier 7 damit auch die Datenkonsistenz, die bei Tier 6 gegeben ist. Desaster werden automatisch erkannt von Geräten außerhalb des eigenen Computersystems. Außerdem wird die Wiederherstellung automatisch ausgeführt, was sozusagen den kompletten Wiederherstellungsprozess bei System und Anwendungen beschleunigt, und diese schneller und zuverlässiger laufen lässt als es überhaupt möglich wäre durch händische Prozeduren. Die Ausfälle belaufen sich auf wenige Minuten oder Sekunden.
+	
+\subsubsection{Recovery Objectives}
+Um die richtige Lösung zu erfassen, auch wenn Kosten ein Kriterium sind, bedarf es einer Evaluierung nach RTO/RPO.
 
-\subsection{Disaster Recovery as a Service (DRaaS)}
-Oft auch nur \textit{Recovery as a service} genannt, ist DRaaS eine Unterkategorie des Cloud Computings und eine zuverlässige Form des Disaster Recovery. Es grenzt sich von cloudbasierten Backups ab, indem es auch bestimmte Daten schützt und auf Abruf Rechenkapazität bereitstellt, um die Wiederherstellung zu beschleunigen. Als Teil des Cloud Computing-Modells folgt es dem Prinzip, dass nur das bezahlt werden muss, was man auch verwendet hat. Damit kommt klar der Vortei zu tragen, dass traditionelle 'Warm Site'- oder 'Hot Site'-Aufbauten wesentlich ineffizienter sind, da sie ständig laufen und bezahlt werden müssen. \\
-RaaS ist Teil der üblichen Nomenklatur, wie etwa IaaS, PaaS oder SaaS \\
+\begin{itemize}
+	\item Recovery Time Objective \\
+	Beschreibt die Zeit, in der die Unternehmensfunktionen oder die Anwendungen spätestens wiederhergestellt sein sollen (inkludiert auch die Zeit, bis Vorgehensweisen bewertet, sowie die Zeit, um dann die nötigen Tasks abzuarbeiten)
+	\item Recovery Point Objective \\
+	Beschreibt wiederum die Zeit, die es maximal brauchen darf, bis genug Daten wiederhergestellt sind, um den Unternehmensprozess fortführen zu lassen.
+\end{itemize}
+
+Es sind viele Lösungen verfügbar, die richtige auszuwählen bedarf einer Kosteneinschätzung sowie auch hier die vertretbare Downtime und das Maß an Datenverlust abzuwägen. Etwa ist ein wenig Datenverlust akzeptierbar, wenn diese aus anderen Quellen leicht wiederhergestellt oder gar neu generiert werden können. \\ Es gibt keine Eine-für-alle-Lösung, der beste Ansatz ist vielleicht eine Mischung der oben genannten Stufen. Auf diesem Wege kann günstig das richtige Level an Schutz umgesetzt werden. Eine vorgefertigte einzelne Lösung oder Herangehensweise ist bei weitem nicht die beste Wahl.
+
+\subsection{Disaster Recovery as a Service (DRaaS) \cite{draas}}
+Oft auch nur \textit{Recovery as a service} genannt, ist DRaaS eine Unterkategorie des Cloud Computings und eine zuverlässige Form des Disaster Recovery. Es grenzt sich von cloudbasierten Backups ab, indem es auch bestimmte Daten schützt und auf Abruf Rechenkapazität bereitstellt, um die Wiederherstellung zu beschleunigen und als Failover zu dienen. Als Teil des Cloud Computing-Modells folgt es dem Prinzip, dass nur das bezahlt werden muss, was man auch verwendet hat. Damit kommt klar der Vortei zu tragen, dass traditionelle 'Warm Site'- oder 'Hot Site'-Aufbauten wesentlich ineffizienter sind, da sie ständig laufen und bezahlt werden müssen. \\
+RaaS ist Teil der üblichen Nomenklatur, wie etwa IaaS, PaaS oder SaaS 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{images/disaster-recovery-as-a-service}
+		\caption{Stark vereinfachte Darstellung von DRaaS \cite{bild4}}
+		\label{DRaaS}
+	\end{center}
+\end{figure}
+
 \subsubsection{Architekturen}
 
 \begin{itemize}
@@ -201,6 +222,33 @@ RaaS ist Teil der üblichen Nomenklatur, wie etwa IaaS, PaaS oder SaaS \\
 	\item From-Cloud RaaS \\
 	Die Primärdaten liegen in der Cloud, und das Backup-Target liegt im privaten Datencenter.
 \end{itemize}
+
+\subsubsection{Möglichkeiten einer Sandbox}
+
+Sandboxes sind ein weit verbreiteter Bestandteil von RaaS-Lösungen. Eine Sandbox ist ein Pool an Infrastruktur mit einer Kopie der RaaS-geschützten Daten oder der jeweiligen Anwendung wo diese aufgesetzt und getestet werden können. Diese Kopie ist vom restlichen Netzwerk getrennt, nur der Systemadministrator hat darauf Zugriff. Ohne das restliche System zu stören kann hier die volle Funktionalität überprüft werden mit einem Minimum an Aufwand. Weil die Sandbox in der Cloud ist, werden die Ressourcen on demand erstellt, man bezahlt nur das, was effektiv genützt wird und alle Daten des Testaufbaus werden beseitigt, wenn der Prozess abgeschlossen ist.
+
+\clearpage
+
+\subsubsection{Namhafte Anbieter}
+
+\begin{itemize}
+	\item VMware \\
+	VMware vCloud Air Disaster Recovery ist eine Recovery as a Service-Lösung, die von VMware entwickelt und betrieben wird. Sie bietet native cloudbasierte Disaster Recovery für vSphere-Umgebungen. Der Service nutzt vSphere Replication für die stabile, asynchrone Replikation auf Hypervisor-Ebene.
+	\item Zerto \\
+	Zerto Virtual Replication, auch erste BC/DR-Plattform
+	\item Infrascale \\
+	Ausgelegt auf Cloud-to-Cloud
+	\item Claranet \\
+	Ausfallsicherheit für vielfältige Anwendungsgebiete (z.B. Office-Anwendungen, CRM, ERP, ...), Verfügbarkeit von > 99,95\%, kurze Replikationsintervalle, linear skalierbar, einfaches und zuverlässiges Wiederanlaufen der Systeme im Disasterfall
+	\item Amazon \\
+	Auch die AWS bieten einige Routinen zur Disaster Recovery für ihre Kunden an.
+	\item Bluelock \\
+	Sehr vielseitiger Schutz, etwa To-Cloud, In-Cloud, Recovery für wichtige Daten, usw.
+	\item Microsoft \\
+	Microsoft Azure Site Recovery, ausgelegt auf Windows-Server und -Technologien.
+\end{itemize}
+
+Für alle genannten Anbieter gilt: Ein Listenpreis ist nicht einfach zu finden, weil auch gar nicht sinnvoll. In Absprache mit dem Provider und je nach Größe des Anwendungsfalls muss hier ein Preis für das eigene System verhandelt werden.
 
 \clearpage
 
