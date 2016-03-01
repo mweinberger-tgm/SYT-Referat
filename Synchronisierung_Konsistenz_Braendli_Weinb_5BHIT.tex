@@ -103,7 +103,13 @@ Einige Beispiele:
 \end{itemize}
 
 Die Liste könnte noch weiter fortgeführt werden, wichtig ist, dass möglichst alle wichtigen und für die Umgebung relevanten Faktoren berücksichtigt werden. Kleinere Disaster treten immer häufiger bzw. mit einer größeren Wahrscheinlichkeit auf. \\
-So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheerendste Auswirkung.Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Wenn ein Knoten ausfällt, übernehmen die übrigen Knoten die Prozesse des ausgefallenen Knotens, es gibt praktisch keinerlei Ausfallzeiten, eventuell jedoch starke Einbußen in der Performance, da die gleiche Last nun von weniger Systemen übernommen werden muss.
+So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheerendste Auswirkung. Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Wenn ein Knoten ausfällt, übernehmen die übrigen Knoten die Prozesse des ausgefallenen Knotens, es gibt praktisch keinerlei Ausfallzeiten, eventuell jedoch starke Einbußen in der Performance, da die gleiche Last nun von weniger Systemen übernommen werden muss.
+
+\begin{figure} 
+    \subfigure[Bezeichnung der linken Grafik]{\includegraphics[width=0.49\textwidth]{ordner/name1.jpg}} 
+    \subfigure[Bezeichnung der rechten Grafik]{\includegraphics[width=0.49\textwidth]{ordner/name2.jpg}} 
+\caption{Titel unterm gesamten Bild} 
+\end{figure} 
 
 \subsubsection{Problem der Downtime, Kosten, max. Häufigkeit}
 
@@ -145,9 +151,29 @@ Der Grad einer guten Absicherung hängt wie gesagt auch mit en Finanzen zusammen
 Eine regelmäßige Backup-Routine (täglich, wenn nicht sogar mehr) ist der Schlüssel zu einer erfolgreichen Katastrophenwiederherstellung. Ein Teil der Backups sollte an einem sicheren Platz abgelegt sein, wenn möglich außerhalb des eigenen Infrastruktur-Netzes. \\
 Auch Redundanz spielt eine tragende Rolle beim Aufbau eines zuverlässigen Systems. Gute DR-Pläne sehen nicht vor, dass wichtige Daten jediglich auf einer Maschine liegen. Ohne diese Maßnahme wäre es nicht möglich, einen Failover-Server mit einer Kopie der kritischen Daten bereitzustellen. \textit{RAID} (Redundant Array Of Independent Disks) ist eine gute Lösung, um dem entgegenzuwirken. Hier haben, je nach Modus, mehrere Festplatten dieselben Daten. RAID ist ein zuverlässiger Schutz bei Datenträgerausfall, der ja bekanntlich eine 100\%-ige Wahrscheinlichkeit mit sich bringt. Die besten Umsetzungen erlauben sogar Hot-Swapping, damit ein Ersatz eingefügt werden kann, ohne dass das System eine Downtime erleidet. RAID bietet auch einen schnelleren Zugriff auf Daten, macht es u. a. effizient für Fileserver. 
 
-\subsection{Disaster Recovery: Techniken}
+\subsection{Disaster Recovery: Techniken \cite{traddr}}
 
 \subsubsection{Traditional Disaster Recovery}
+
+\textit{SHARE} ist ein ehrenamtlicher Userzusammenschluss mit Fokus auf IBM-Systeme und -Technologien, und wurde bereits im Jahr 1955 gegründet. SHARE hat ursprünglich die \textit{Seven tiers of disaster recovery} definiert, um verschiedene Herangehensweisen zu beschreiben, um eben auftragskritische Computersysteme wiederherzustellen, und wurde darin auch von IBM selbst unterstützt. Obwohl das Originalkonzept bis in die späten 1980er-Jahre zurückreicht, verwenden DRP-Experten diesen Ansatz bis heute sehr häufig (Stand: Dez. 2015), um Möglichkeiten und Kosten darzustellen. Natürlich wurden die genauen Definitionen dementsprechend angepasst, um heutigen Standards besser zu entsprechen. \\
+Das SHARE Technical Steering Committee in Zusammenarbeit mit IBM hat die Stufen (Tiers) auf die Zahlen 0 bis 6 festgelegt. Durch den technischen Fortschritt der vergangenen Jahrzehnte wurde eben eine 7. Stufe hinzugefügt, die mehrere auch geographisch voneinander unabhängige Systeme berücksichtigt, welches das höchste Maß an Verfügbarkeit darstellt.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{images/7-tier}
+		\caption{Seven tiers of disaster recovery \cite{bild1}}
+		\label{Seven tiers of disaster recovery}
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+	\item Tier 0: No off-site data – Possibly no recovery \\
+	Unternehmen mit einer Tier 0-Lösung haben keinen Disaster Recovery Plan. Sie haben keine gespeicherten Informationen über das System, keine Dokumentation und auch keine Backups. Die Zeit, die benötigt wird um ein solches System wiederherzustellen ist unvorhersehbar, es kann sogar sein, dass es unmöglich ist zum Normalzustand zurückzukehren.
+	\item Tier 1: Data backup with no hot site \\
+	Tier 1-Systeme erhalten regelmäßig ein Backup, und lagern diese an einem sicheren Ort, der sich außerhalb des eigenen Hauses (der eigenen Infrastruktur) befindet. Dies ist notwendig, da vor einem Desaster auch Backups mit lokalem, nicht redundanten Speicherort nicht sicher sind. Diese Methode Backups zu transportieren heißt PTAM, ausgeschrieben 'Pick-up Truck Access Method'. Sprich, das Backup ist so schnell greifbar, wie der Transport vom Aufbewahrungsort dauert. Abhängig davon, wie oft Sicherungen gemacht und versendet werden müssen Unternehmen einige Tage bzw. Wochen Datenverlust inkaufnehmen, dafür sind die Sicherungsdateien geschützt außerhalb des Geländes aufbewahrt.
+	\item Tier 2: Data backup with a hot site \\
+	Bei Verwendung von Tier 2 kommen Tapes zum Einsatz bei Sicherungen. 
+\end{itemize}
 
 \subsubsection{Disaster Recovery as a service}
 
