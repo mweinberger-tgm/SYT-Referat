@@ -170,30 +170,37 @@ Wie auch hier sind die aufkommenden Kosten von niedrig (Tier 0) bis hoch (Tier 7
 	\end{center}
 \end{figure}
 
-\begin{itemize}
-	\item \textbf{Tier 0: No off-site data – Possibly no recovery} \\
+	\subsubsection{Tier 0: No off-site data – Possibly no recovery}
 	Unternehmen mit einer Tier 0-Lösung haben keinen Disaster Recovery Plan. Sie haben keine gespeicherten Informationen über das System, keine Dokumentation und auch keine Backups. Die Zeit, die benötigt wird um ein solches System wiederherzustellen ist unvorhersehbar, es kann sogar sein, dass es unmöglich ist zum Normalzustand zurückzukehren.
-	\item \textbf{Tier 1: Data backup with no hot site} \\
+	\subsubsection{Tier 1: Data backup with no hot site}
 	Tier 1-Systeme erhalten regelmäßig ein Backup, und lagern diese an einem sicheren Ort, der sich außerhalb des eigenen Hauses (der eigenen Infrastruktur) befindet. Dies ist notwendig, da vor einem Desaster auch Backups mit lokalem, nicht redundanten Speicherort nicht sicher sind. Diese Methode Backups zu transportieren heißt PTAM, ausgeschrieben 'Pick-up Truck Access Method'. Sprich, das Backup ist so schnell greifbar, wie der Transport vom Aufbewahrungsort dauert. Abhängig davon, wie oft Sicherungen gemacht und versendet werden müssen Unternehmen einige Tage bzw. Wochen Datenverlust inkaufnehmen, dafür sind die Sicherungsdateien geschützt außerhalb des Geländes aufbewahrt.
-	\item \textbf{Tier 2: Data backup with a hot site} \\
+	\subsubsection{Tier 2: Data backup with a hot site}
 	Bei Verwendung von Tier 2 werden ebenso regelmäßige Sicherungen vorgenommen, auf langlebigen Speichermedien wie etwa Tapes. Das wird kombiniert mit eigener Infrastruktur außerhalb des eigenen Geländes (genannt 'Hot Side'), von welchen die Backups rückgelesen werden im Falle eines Desasters. Diese Lösung benötigt immer noch einige Stunden oder Tage zur Wiederherstellung, jedoch ist die Gesamtdauer besser vorhersehbar.
-	\item \textbf{Tier 3: Electronic vaulting} \\
+	\subsubsection{Tier 3: Electronic vaulting}
 	Der Ansatz Tier 3 baut auf Tier 2 auf. Hinzufügend dazu werden kritische Daten elektronisch abgekapselt von den weniger prioren. Die Abgekapselten sind üblicherweise aktueller als die Daten, die via PTAM abgelegt werden. Als Ergebnis ist hier weniger Dateiverlust, sollte eine Katastrophe eintreten. \\ Einrichtungen, die 'Electronic Remote Vaulting' bereitstellen, verfügen über Hochgeschwindigkeitsanbindungen und entweder physische oder virtuelle Sicherheitstape-Lesegeräte, mit automatisierter Sicherungsbibliothek beim entfernten Standort. \\ Als praktischen Beispiel zur Implementierung dienen IBMs Peer-to-Peer TotalStorage Virtual Tape Server oder Oracles VMS Clustering.
-	\item \textbf{Tier 4: Point-in-time copies} \\
+	\subsubsection{Tier 4: Point-in-time copies}
 	Tier 4-Lösungen werden oft von Unternehmen verwendet, die hohen Wert auf Datenkorrektheit und schneller Wiederherstellung legen als die unteren Stufen bereitstellen. Eher als das Auslagern von Speichertapes wie bei 0-3 gegeben, integriert diese Stufe Sicherungen auf Basis von Disks (also Festplatten). Immer noch sind mehrere Stunden Datenverlust möglich, jedoch ist es einfacher Point-in-Time-Backups (PiT, jeweils zu einem festgelegten Zeitpunkt) zu erstellen mit einer höheren Frequenz als Tape-Sicherungen, sogar wenn elektronisch gekapselt.
-	\item \textbf{Tier 5: Transaction integrity} \\
-	Tier 5 wird verwendet, wenn es zwingend erforderlich ist, dass Daten konsistent sind zwischen Produktivsystem und dem Wiederherstellungs-Remoteserver. Bei einem solchen Aufbau kommt es zu kaum bis gar keinem Datenverlust, aber die Verfügbarkeit dieser Funktionalität ist stark abhängig von der verwendeten Implementierung.
-	\item \textbf{Tier 6: Zero or near-Zero data loss} \\
+	\subsubsection{Tier 5: Transaction integrity} 
+	Tier 5 wird verwendet, wenn es zwingend erforderlich ist, dass Daten konsistent sind zwischen Produktivsystem und dem Wiederherstellungs-Remoteserver. Bei einem solchen Aufbau kommt es zu kaum bis gar keinem Datenverlust, aber die Verfügbarkeit dieser Funktionalität ist stark abhängig von der verwendeten Implementierung. \newpage
+	\subsubsection{Tier 6: Zero or near-Zero data loss} 
 	Tier 6 hält das höchste Maß an Datenrichtigkeit aufrecht. Dieser Ansatz wird eingesetzt von Systemen, in denen wenig oder gar kein Datenverlust vertretbar ist, und wo Daten für den weiteren Gebrauch schnell wiederhergesellt werden müssen. Solche Lösungen haben keine Abhängigkeit von Anwendungen oder Mitarbeitern, um Datenkonsistenz zu gewährleisten. \\
 	Tier 6 erfordert eine Form von Disk Mirroring zu einem Remoteserver, hierfür gibt es verschiedenste synchrone oder asynchrone Implementierungen von vielen Herstellern. Jede Herangehenweise ist leicht anders, mit verschiedenen Möglichkeiten und anderen Recovery Point/Recovery Time-Anforderungen. In den manchen Fällen wird jedoch auch eine Art von Tape-Speicherung benötigt, abhängig von dem erforderlichen Speicherplatz, der von Backup in Anspruch genommen wird.
-	\item \textbf{Tier 7: Highly automated, business integrated solution} \\
+	\subsubsection{Tier 7: Highly automated, business integrated solution} 
 	Das höchste Level nimmt all die Hauptkomponenten von Tier 6 zusammen und fügt die Intgration von Automation hinzu. Das erlaubt Tier 7 damit auch die Datenkonsistenz, die bei Tier 6 gegeben ist. Desaster werden automatisch erkannt von Geräten außerhalb des eigenen Computersystems. Außerdem wird die Wiederherstellung automatisch ausgeführt, was sozusagen den kompletten Wiederherstellungsprozess bei System und Anwendungen beschleunigt, und diese schneller und zuverlässiger laufen lässt als es überhaupt möglich wäre durch händische Prozeduren. Die Ausfälle belaufen sich auf wenige Minuten oder Sekunden.
+
+\subsection{Disaster Recovery as a Service (DRaaS)}
+Oft auch nur \textit{Recovery as a service} genannt, ist DRaaS eine Unterkategorie des Cloud Computings und eine zuverlässige Form des Disaster Recovery. Es grenzt sich von cloudbasierten Backups ab, indem es auch bestimmte Daten schützt und auf Abruf Rechenkapazität bereitstellt, um die Wiederherstellung zu beschleunigen. Als Teil des Cloud Computing-Modells folgt es dem Prinzip, dass nur das bezahlt werden muss, was man auch verwendet hat. Damit kommt klar der Vortei zu tragen, dass traditionelle 'Warm Site'- oder 'Hot Site'-Aufbauten wesentlich ineffizienter sind, da sie ständig laufen und bezahlt werden müssen. \\
+RaaS ist Teil der üblichen Nomenklatur, wie etwa IaaS, PaaS oder SaaS \\
+\subsubsection{Architekturen}
+
+\begin{itemize}
+	\item To-Cloud RaaS \\
+	Die Zielanwendung befindet sich im primären, privaten Datencenter, und die Cloud wird als Backup- und Recovery-Target verwendet.
+	\item In-Cloud RaaS \\
+	Bedeutet, dass sowohl Zielanwendung als auch Recovery-Sites in der Cloud angesiedelt sind.
+	\item From-Cloud RaaS \\
+	Die Primärdaten liegen in der Cloud, und das Backup-Target liegt im privaten Datencenter.
 \end{itemize}
-\newpage
-
-\subsubsection{Disaster Recovery-as-a-Service (DRaaS)}
-
-\subsubsection{Beispiel MySQL}
 
 \clearpage
 
