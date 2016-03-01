@@ -105,16 +105,19 @@ Einige Beispiele:
 Die Liste könnte noch weiter fortgeführt werden, wichtig ist, dass möglichst alle wichtigen und für die Umgebung relevanten Faktoren berücksichtigt werden. Kleinere Disaster treten immer häufiger bzw. mit einer größeren Wahrscheinlichkeit auf. \\
 So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheerendste Auswirkung. Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Wenn ein Knoten ausfällt, übernehmen die übrigen Knoten die Prozesse des ausgefallenen Knotens, es gibt praktisch keinerlei Ausfallzeiten, eventuell jedoch starke Einbußen in der Performance, da die gleiche Last nun von weniger Systemen übernommen werden muss.
 
-\begin{figure} 
-    \subfigure[Bezeichnung der linken Grafik]{\includegraphics[width=0.49\textwidth]{ordner/name1.jpg}} 
-    \subfigure[Bezeichnung der rechten Grafik]{\includegraphics[width=0.49\textwidth]{ordner/name2.jpg}} 
-\caption{Titel unterm gesamten Bild} 
+\begin{figure}[h]
+    \subfigure[Risikofaktoren \cite{bild2}]{\includegraphics[width=0.49\textwidth]{images/white_paper_c11-453495-2.jpg}} 
+    \subfigure[Extrembeispiel Erdbeben \cite{bild3}]{\includegraphics[width=0.49\textwidth]{images/white_paper_c11-453495-3.jpg}} 
+\caption{Katastrophe \& Auswirkung, Risikoabschätzung} 
 \end{figure} 
+\newpage
 
 \subsubsection{Problem der Downtime, Kosten, max. Häufigkeit}
 
-Das Beispiel des Webblogs "Interxion" zeigt mögliche Kosten bei einem internationaln Marktführer wie etwa Facebook: \\
+Das Beispiel des Webblogs 'Interxion' zeigt mögliche Kosten bei einem internationaln Marktführer wie etwa Facebook: \\
 Als Facebook am 1. August 2014 großteils nicht erreichbar war, riefen hunderte amerikanischer Nutzer ihren nächstgelegenen Polizeiposten an. Die Downtime dauerte zwar nur 20 Minuten, soll das Unternehmen aber immerhin 500.000\$ gekostet haben. Berechnet hat dies "The Wire" aufgrund der Werbeeinnahmen von Facebook, die im Jahr 2,91 Milliarden\$ betragen – oder 22.453\$ pro Minute. Es wird geschätzt, dass die wahren Kosten eines solchen Ausfalls weit höher liegen. Heikel dabei ist der Ruf des Unternehmens: Nicht nur Nutzer, auch diejenigen, die den Dienst finanzieren – die Werbetreibenden – bauen auf dessen Zuverlässigkeit. Jeder Nutzer, der wegen einer Downtime Facebook unfreiwilig den Rücken kehrt, bedeutet für die Werber ein verlorenes Mitglied ihrer Zielgruppe. In einer aktuellen Studie schätzen Unternehmen ihre Kosten für eine Stunde Ausfallzeit auf mindestens 20.000 \$, 20\% der Unternehmen auf über 100.000 \$. Natürlich spielt es eine Rolle, in welcher Branche das Unternehmen tätig ist, und wieviele Zugriffe auf Ihre Services erfolgen. Die Kostenberechnung für eine Server-Downtime ist ein komplexes Unterfangen –  nur den Verlust der Werbeinnahmen in Betracht zu ziehen, wie es im Fall Facebook gemacht wurde, greift sicher noch zu wenig weit.
+
+\newpage
 
 \subsubsection{Fehlertoleranz}
 
@@ -151,7 +154,7 @@ Der Grad einer guten Absicherung hängt wie gesagt auch mit en Finanzen zusammen
 Eine regelmäßige Backup-Routine (täglich, wenn nicht sogar mehr) ist der Schlüssel zu einer erfolgreichen Katastrophenwiederherstellung. Ein Teil der Backups sollte an einem sicheren Platz abgelegt sein, wenn möglich außerhalb des eigenen Infrastruktur-Netzes. \\
 Auch Redundanz spielt eine tragende Rolle beim Aufbau eines zuverlässigen Systems. Gute DR-Pläne sehen nicht vor, dass wichtige Daten jediglich auf einer Maschine liegen. Ohne diese Maßnahme wäre es nicht möglich, einen Failover-Server mit einer Kopie der kritischen Daten bereitzustellen. \textit{RAID} (Redundant Array Of Independent Disks) ist eine gute Lösung, um dem entgegenzuwirken. Hier haben, je nach Modus, mehrere Festplatten dieselben Daten. RAID ist ein zuverlässiger Schutz bei Datenträgerausfall, der ja bekanntlich eine 100\%-ige Wahrscheinlichkeit mit sich bringt. Die besten Umsetzungen erlauben sogar Hot-Swapping, damit ein Ersatz eingefügt werden kann, ohne dass das System eine Downtime erleidet. RAID bietet auch einen schnelleren Zugriff auf Daten, macht es u. a. effizient für Fileserver. 
 
-\subsection{Disaster Recovery: Techniken \cite{traddr}}
+\subsection{Disaster Recovery: Techniken \cite{traddr} \cite{traddr2}}
 
 \subsubsection{Traditional Disaster Recovery}
 
@@ -172,7 +175,9 @@ Das SHARE Technical Steering Committee in Zusammenarbeit mit IBM hat die Stufen 
 	\item Tier 1: Data backup with no hot site \\
 	Tier 1-Systeme erhalten regelmäßig ein Backup, und lagern diese an einem sicheren Ort, der sich außerhalb des eigenen Hauses (der eigenen Infrastruktur) befindet. Dies ist notwendig, da vor einem Desaster auch Backups mit lokalem, nicht redundanten Speicherort nicht sicher sind. Diese Methode Backups zu transportieren heißt PTAM, ausgeschrieben 'Pick-up Truck Access Method'. Sprich, das Backup ist so schnell greifbar, wie der Transport vom Aufbewahrungsort dauert. Abhängig davon, wie oft Sicherungen gemacht und versendet werden müssen Unternehmen einige Tage bzw. Wochen Datenverlust inkaufnehmen, dafür sind die Sicherungsdateien geschützt außerhalb des Geländes aufbewahrt.
 	\item Tier 2: Data backup with a hot site \\
-	Bei Verwendung von Tier 2 kommen Tapes zum Einsatz bei Sicherungen. 
+	Bei Verwendung von Tier 2 werden ebenso regelmäßige Sicherungen vorgenommen, auf langlebigen Speichermedien wie etwa Tapes. Das wird kombiniert mit eigener Infrastruktur außerhalb des eigenen Geländes (genannt 'Hot Side'), von welchen die Backups rückgelesen werden im Falle eines Desasters. Diese Lösung benötigt immer noch einige Stunden oder Tage zur Wiederherstellung, jedoch ist die Gesamtdauer besser vorhersehbar.
+	\item Tier 3: Electronic vaulting \\
+	
 \end{itemize}
 
 \subsubsection{Disaster Recovery as a service}
