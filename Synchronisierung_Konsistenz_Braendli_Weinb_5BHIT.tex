@@ -114,8 +114,8 @@ So fern es sich anhört, Naturkatastrophen haben wenn sie auftreten die verheere
 
 \subsubsection{Problem der Downtime, Kosten, max. Häufigkeit}
 
-Das Beispiel des Webblogs 'Interxion' zeigt mögliche Kosten bei einem internationaln Marktführer wie etwa Facebook: \\
-Als Facebook am 1. August 2014 großteils nicht erreichbar war, riefen hunderte amerikanischer Nutzer ihren nächstgelegenen Polizeiposten an. Die Downtime dauerte zwar nur 20 Minuten, soll das Unternehmen aber immerhin 500.000\$ gekostet haben. Berechnet hat dies "The Wire" aufgrund der Werbeeinnahmen von Facebook, die im Jahr 2,91 Milliarden\$ betragen – oder 22.453\$ pro Minute. Es wird geschätzt, dass die wahren Kosten eines solchen Ausfalls weit höher liegen. Heikel dabei ist der Ruf des Unternehmens: Nicht nur Nutzer, auch diejenigen, die den Dienst finanzieren – die Werbetreibenden – bauen auf dessen Zuverlässigkeit. Jeder Nutzer, der wegen einer Downtime Facebook unfreiwilig den Rücken kehrt, bedeutet für die Werber ein verlorenes Mitglied ihrer Zielgruppe. In einer aktuellen Studie schätzen Unternehmen ihre Kosten für eine Stunde Ausfallzeit auf mindestens 20.000 \$, 20\% der Unternehmen auf über 100.000 \$. Natürlich spielt es eine Rolle, in welcher Branche das Unternehmen tätig ist, und wieviele Zugriffe auf Ihre Services erfolgen. Die Kostenberechnung für eine Server-Downtime ist ein komplexes Unterfangen –  nur den Verlust der Werbeinnahmen in Betracht zu ziehen, wie es im Fall Facebook gemacht wurde, greift sicher noch zu wenig weit.
+Das Beispiel des Webblogs 'Interxion' zeigt mögliche Kosten bei einem internationalen Marktführer wie etwa Facebook: \\
+Als Facebook am 1. August 2014 großteils nicht erreichbar war, riefen hunderte amerikanischer Nutzer ihren nächstgelegenen Polizeiposten an. Die Downtime dauerte zwar nur 20 Minuten, soll das Unternehmen aber immerhin 500.000 \$ gekostet haben. Berechnet hat dies 'The Wire' aufgrund der Werbeeinnahmen von Facebook, die im Jahr 2,91 Milliarden \$ betragen – oder 22.453 \$ pro Minute. Es wird geschätzt, dass die wahren Kosten eines solchen Ausfalls weit höher liegen. Heikel dabei ist der Ruf des Unternehmens: Nicht nur Nutzer, auch diejenigen, die den Dienst finanzieren – die Werbetreibenden – bauen auf dessen Zuverlässigkeit. Jeder Nutzer, der wegen einer Downtime Facebook unfreiwilig den Rücken kehrt, bedeutet für die Werber ein verlorenes Mitglied ihrer Zielgruppe. In einer aktuellen Studie schätzen Unternehmen ihre Kosten für eine Stunde Ausfallzeit auf mindestens 20.000 \$, 20\% der Unternehmen auf über 100.000 \$. Natürlich spielt es eine Rolle, in welcher Branche das Unternehmen tätig ist, und wieviele Zugriffe auf Ihre Services erfolgen. Die Kostenberechnung für eine Server-Downtime ist ein komplexes Unterfangen –  nur den Verlust der Werbeinnahmen in Betracht zu ziehen, wie es im Fall Facebook gemacht wurde, greift sicher noch zu wenig weit.
 
 \newpage
 
@@ -144,7 +144,7 @@ sowie Abhängigkeiten untereinander abbilden und miteinander in Konflikt stehend
 
 \subsubsection{Clustersysteme und deren Vorteile}
 
-Wenn Systeme 24/7 verfügbar sein müssen, wird oft eine Clusterlösung herangezogen. Hier unterscheidet man zwischen zwei Varianten, Failover-Clustering und 'echtem' Clustering. Bei der Failover-Technologie mit zwei oder mehreren Netzwerkdiensten übernimmt ein Zweitsystem bei einseitigem Ausfall des Primärsystems. Echtes Clustering, sprich ein Aktiv/Aktiv-Cluster, wird bezeichnet einen Rechnerverbund, in dem mehrere (meistens > 2) Nodes gleichzeitig aktiv sind. Computercluster werden neben der Verteilung der Rechenleistung auch u. a. zur Sicherstellung der Verfügbarkeit von diversen Ressourcen wie Netzwerke, Applikationen etc. verwendet. Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Beide Herangehensweisen beinhalten keinen DRP. Da sie "100\% der Zeit" verfügbar sind (aus Sicht des Kunden), gibt es per se keine Katastrophen, die die Business Continuity beeinträchtigen. Der einzige Nachteil: Solche Lösungen sind meistens sehr teuer in Aufbau und Wartung, und daher eher nur von großen Unternehmen mit großem Budget zu bewerkstelligen.
+Wenn Systeme 24/7 verfügbar sein müssen, wird oft eine Clusterlösung herangezogen. Hier unterscheidet man zwischen zwei Varianten, Failover-Clustering und 'echtem' Clustering. Bei der Failover-Technologie mit zwei oder mehreren Netzwerkdiensten übernimmt ein Zweitsystem bei einseitigem Ausfall des Primärsystems. Echtes Clustering, sprich ein Aktiv/Aktiv-Cluster, wird bezeichnet einen Rechnerverbund, in dem mehrere (meistens > 2) Nodes gleichzeitig aktiv sind. Computercluster werden neben der Verteilung der Rechenleistung auch u. a. zur Sicherstellung der Verfügbarkeit von diversen Ressourcen wie Netzwerke, Applikationen etc. verwendet. Unter einer Aktiv/Aktiv-Konfiguration versteht man in diesem Zusammenhang, dass die so gesicherte Ressource, also zum Beispiel eine Datenbank, auf allen Clusterknoten aktiv ist. Beide Herangehensweisen beinhalten keinen DRP. Da sie '100\% der Zeit' verfügbar sind (aus Sicht des Kunden), gibt es per se keine Katastrophen, die die Business Continuity beeinträchtigen. Der einzige Nachteil: Solche Lösungen sind meistens sehr teuer in Aufbau und Wartung, und daher eher nur von großen Unternehmen mit großem Budget zu bewerkstelligen.
 
 \subsubsection{Wieso dann DR?}
 
@@ -252,8 +252,123 @@ Für alle genannten Anbieter gilt: Ein Listenpreis ist nicht einfach zu finden, 
 
 \clearpage
 
+\section{Synchronisation von verteilten Datenbanken}
+\subsubsection{Definition DDBS (Distributed Database System)}
+Als erstes müssen wir definieren, was wir unter einer verteilten Datenbank verstehen, hierzu ein Zitat von F. Laux:
+\\\\
+''Ein verteiltes Datenbanksystem (DDBS) ist ein System von Datenbanken, deren Daten miteinander in Beziehung stehen und auf verschiedenen Rechnern an verschiedenen geographischen Orten gespeichert sind.'' [Lau2]
+\\\\
+Man spricht auch nur dann von einer verteilten Datenbank wenn neben den lokalen Transaktionen, für die nur der lokale Server abgefragt werden muss, auch noch mindestens eine globale Transaktion benötigt wird, daher Daten von den anderen Standorten abgefragt werden. [Lau2]
+\\\\
+Den Begriff verteilte Datenbank kann man auf verschieden Arten interpretieren.
+In den meisten Fällen ist eine vollständig verteilte Datenbank damit gemeint. Bei dieser steht auf jedem Standort auch ein Datenbankserver, und die gesamten Daten sind auch auf alle Server verteilt. Trotzdem wirkt das Datenbanksystem auf den Benutzer als ob es eine zentrale Datenbank wäre. [Gei11]
+\subsection{Verbünde}
+\subsubsection{Datenverbund}
+Daten werden oft mit unterschiedlicher Intensität und an verschiedenen Stellen erfordert. Um unnötige Datenauslastung in dem Netzwerk zu vermeiden, werden die Daten mithilfe einer Datenbank an den jeweiligen Standorten geografisch verteilten gespeichert, ohne den Übereinstimmungen mit anderen Daten, die in erster Linie an anderen Stellen benötigt werden, verloren gehen. Hierzu ist es jedoch notwendig, dass eine solche verteilte Datenbank logisch und technisch realisierbar bleibt.
+\\
+Man erhält mit diesem Verfahren zugleich eine wirksamere Zugriffskontrolle, da es mehrere Kontrollinstanzen gibt und die Residenz der Daten dem Benutzer verborgen bleibt. Auch vermindert man den Datenverkehr über größere Entfernungen, was die Sicherheit vor Ausspähung, Verlust oder Verfälschung der Daten erhöht sowie die Verfügbarkeit der Daten beim temporären Ausfall von Verbindungen usw. Bei lokalem Ausfall einzelner Komponenten kann u.U. mit den Daten, die auf nicht ausgefallenen Rechnern residieren, noch weiter gearbeitet werden. [Rah4]
+
+\subsubsection{Leistungsverbund}
+Man kann die Geschwindigkeit der Ausführung einer Aufgabe u.U. dadurch erhöhen, dass man die Aufgabe in Teilaufgaben zerlegt und diese gleichzeitig auf verschiedenen Rechnern ausführen lässt; wodurch die gesamte Bearbeitungszeit für die Aufgabe verringert wird. Dazu ist es erforderlich, dass die Aufgabe in möglichst unabhängige Teilaufgaben zerlegt werden kann. [Rah4]\\
+Man kann eine Prozesssteuerung implementieren, die möglichst viele Teilaufgaben auf möglichst viele Rechner verteilt, die Ergebnisse wieder einsammelt und ein Protokoll über den erfolgreichen Ablauf der Bearbeitung erstellt. Die Prozesssteuerung kann entweder vom Benutzer manuell erstellt werden, oder automatisch aus dem Programm generiert werden. Letzteres ist i.allg. zurzeit und aus prinzipiellen Überlegungen heraus noch nicht möglich. [Rah4]\\\\
+Stehen mehrere Aufträge zur Bearbeitung an, so kann durch geschickte Auswahl der Aufträge und Verteilung auf verschiedene Rechner ebenfalls die mittlere Antwortzeit aller Aufträge verringert werden. Die mittlere Antwortzeit wird z.B. minimal, wenn immer der Auftrag mit der kürzesten Bearbeitungszeit vorgezogen wird. Dadurch werden jedoch Aufträge mit langer Bearbeitungszeit u.U. stark benachteiligt, so dass differenzierte Strategien angewendet werden sollten. Bei Einprozessorsystemen wird dieses Ziel annähernd durch das Zeitscheibenverfahren (processor sharing) erreicht. Bei Rechnerverbunden ist diese Methode vermutlich erfolgversprechender als die Zerlegung einer Aufgabe in verschiedene Teilaufgaben.[Rah4]\\
+\subsubsection{Verfügbarkeitsverbund}
+Ein Verfügbarkeitsverbund ist ein fehlertoleranter Verbund von Geräten, der die wichtigsten Dienste verfügbar und betriebsfähig halten soll. Dies wird mittels Redundanz ermöglicht.\\\\
+Dies kann auf verschiedene Weise erfolgen: durch Cold Standby, Hot Standby oder durch ein ganzes Ausweichrechenzentrum.[Rah4]\\\\
+Man setzt den Verfügbarkeitsverbund insbesondere in Umgebungen ein, die eine hohe Betriebssicherheit benötigen oder bei denen ein Ausfall einen wirtschaftlichen Schaden zur Folge haben würde, also unter anderem in der Flugüberwachung, in der industriellen Fertigung und für Telekommunikationseinrichtungen.[Rah4]\\\\
+\subsection{Verteilung}
+\subsubsection{Fragmentierung}
+\begin{figure}[hp]
+\centering
+\includegraphics[scale=0.80]{Frag.png}
+\caption{Hybride Fragmentierung}
+\label{}
+\end{figure}
+\paragraph{Horizontale Fragmentierung\\\\}
+Die horizontale Fragmentierung ist die in existierenden Systemen bedeutendste Fragmentierungsform und wird daher am ausführlichsten behandelt. Bei ihr wird eine globale Relation zeilenweise in disjunkte Teilmengen zerlegt. Die Zuordnung von Sätzen zu Fragmenten wird dabei i.a. über Selektionsprädikate definiert. Hierbei sind zwei Fälle zu unterscheiden. Bei der einfachen (primären) horizontalen Fragmentierung beziehen sich die Selektionsprädikate ausschließlich auf Attribute der zu zerlegenden Relation. Bei der abgeleiteten horizontalen Fragmentierung dagegen wird die Zerlegung auf die horizontale Fragmentierung einer anderen Relation abgestimmt.[Pic5]
+\\\\
+\newpage
+\paragraph{Vertikale Fragmentierung\\\\}
+Die vertikale Fragmentierung zerlegt eine Relation spaltenweise durch Definition von Projektionen auf den Attributen der Relation. Die Forderungen nach Vollständigkeit und Rekonstruierbarkeit verlangen, das jedes Attribut in wenigstens einem Fragment enthalten ist. Die Rekonstruktion der globalen Relation erfordert den natürlichen Verbund (Join) zwischen den einzelnen Fragmenten. Um diese Join-Berechnung verlustfrei vornehmen zu können, ist es jedoch erforderlich, den Primärschlüssel der globalen Relation (bzw. einen sonstigen Schlüsselkandidaten) in jedem Fragment mitzuführen. Die Forderung nach Disjunktheit muss also bei der vertikalen Fragmentierung auf die Nicht-Primärattribute (Attribute, die nicht Teil des Primärschlüssels sind) eingeschränkt werden.[Pic5]
+\\
+Die vertikale Fragmentierung kommt vor allem für Relationen mit einer großen Anzahl von Attributen zum Tragen, wenn an verschiedenen Knoten vorwiegend unterschiedliche Teilmengen der Attribute benötigt werden. In diesem Fall kann durch die vertikale Fragmentierung eine Reduzierung des Kommunikationsaufwandes erreicht werden sowie eine Einschränkung des zu verarbeitenden Datenumfanges. Auf der anderen Seite ist die Rekonstruktion der vollständigen Tupel über Verbunde teuer. \\Sehr aufwendig sind auch Änderungsvorgänge wie Einfügen oder Löschen von Tupeln, da sie sämtliche vertikalen Fragmente einer Relation betreffen.[Pic5]
+\paragraph{Hybride Fragmentierung\\\\}
+Da die Fragmente einer Relation selbst wiederum Relationen darstellen, kann die Fragmentierung rekursiv fortgesetzt werden, sofern die Korrektheit in jedem Fragmentierungsschritt gewahrt bleibt. Insbesondere können dabei die unterschiedlichen Fragmentierungsarten kombiniert werden, wobei man dann von einer hybriden Fragmentierung der globalen Relation spricht. Die Wiederherstellung einer derart zerlegten Relation erfordert die Ausführung der Rekonstruktionsschritte in der inversen Reihenfolge, in der die Fragmentierungen vorgenommen wurden.[Pic5]
+\subsection{Synchronisation}
+\subsubsection{Arten der Synchronisation}
+\begin{figure}[hp]
+\centering
+\includegraphics[scale=0.80]{syn.png}
+\caption{Synchrone und Asynchrone Synchronisation}
+\label{syn}
+\end{figure}
+\subsubsection{Synchron}
+Tabellen die ständig geändert werden, müssen synchron gehalten werden. Hier besteht ebenfalls die Möglichkeit, die Replikate (mit Ausnahme eines, nämlich dem Original) nur für Lese-Zugriffe freizugeben. Damit ist die Synchronisation dann nur unidirektional durchzuführen. Die Daten des Replikats stehen dann wie oben nur zum Lesen zur Verfügung und alle Änderungen erfolgen auf dem Original. Dies ist aber nur dann sinnvoll, wenn die Änderungen hauptsächlich an einem Ort stattfinden und die Lesezugriffe über das Netzwerk zu zeitraubend sind. [Lau2]
+\subsubsection{Asynchron}
+Die asynchrone Replikation ist, wenn zwischen der Bearbeitung der primären Daten und den Replikaten eine Latenz vorliegt. Die Daten sind nur zum Zeitpunkt der Replikation synchron. Asynchrone Replikationsverfahren können mittels Read-Only oder Update-Anywhere realisiert werden. Bei Update-Everywhere kann auf allen Datenbanken geschrieben werden und es entsteht eine Aktualisierung in beide Richtungen. Bei Read-Only können die Daten nur von der primären Datenbank auf die Replizierten repliziert werden. [Lau2]
+\subsection{Optimistische Synchronisation}
+Optimistische Synchronisationsverfahren gehen von der Annahme aus, dass Konflikte zwischen Transaktionen seltene Ereignisse darstellen und somit das präventive Sperren der Objekte unnötigen Aufwand verursacht [KR81].  Daher wird ein nahezu beliebig paralleles Arbeiten auf der Datenbank erlaubt. Erst bei Transaktionsende wird überprüft, ob Konflikte mit anderen Transaktionen aufgetreten sind. Gemäß dieser Vorgehensweise unterteilt man die Ausführung einer Transaktion in drei Phasen:
+\\\\
+\emph{
+In der Lesephase wird die eigentliche Transaktionsverarbeitung vorgenommen, d.h., es werden Objekte der Datenbank gelesen und modifiziert. Jede Transaktion führt dabei ihre Änderungen auf Kopien in einem ihr zugeordneten Transaktions-Puffer durch, der für keine andere Transaktion zugänglich ist.
+\\\\
+Bei EOT wird eine Validierungsphase gestartet, in der geprüft wird, ob die beendigungswillige Transaktion mit einer parallel zu ihr laufenden Transaktion in Konflikt geraten ist. Im Gegensatz zu Sperrverfahren, bei denen Blockierungen das primäre Mittel zur Behandlung von Synchronisationskonflikten sind, werden hier Konflikte stets durch Zurücksetzen einer oder mehrerer beteiligter Transaktionen aufgelöst. Es ist so zwar mit mehr Rücksetzungen als bei Sperrverfahren zu rechnen, dafür können aber bei optimistischen Verfahren keine Deadlocks entstehen.
+\\\\
+ Dies ist vor allem für Verteilte DBS ein potentieller Vorteil.
+Die Schreibphase wird nur von Änderungstransaktionen ausgeführt, die die Validierungsphase erfolgreich beenden konnten. In dieser Phase wird zuerst die Wiederholbarkeit der Transaktion sichergestellt (Logging), bevor alle Änderungen durch Einbringen in die Datenbank für andere Transaktionen sichtbar gemacht werden. 
+}
+\subsection{Transaktionsmanagement}
+In einer dezentralen Datenbank ist das Transaktionsmanagement sehr komplex, da bei einer globalen Transaktion nicht nur Daten auf einem Server geändert werden müssen, sondern auch auf Servern an anderen Standort, und sollte auch nur eine Teilaufgabe der Transaktion scheitern muss das ganze System zurückgesetzt werden um die Integrität der Datenbank zu erhalten. [Gei11]\\
+Dadurch dass bei globalen Transaktionen Daten an mehreren Standorten geändert werden müssen ergeben sich dadurch einige Probleme. Schauen wir uns diese anhand eines Beispiels an:\\\\
+Wir haben eine Bank mit mehreren Filialen (in ganz Österreich). Wir wollen Zinsen aller Kunden um 0.1 Prozent verringern. Dadurch wird ein \textbf{update} an alle Datenfragemente geschickt. Im Normalfall wird versucht die Tabelle Konto zu sperren, die Änderungen durchzuführen und dann die geänderten Daten zu \textbf{commit}en. Nehmen wir an das funktioniert ohne Probleme in allen Bundesländern außer Wien. In Wien kann die Tabelle nicht gesperrt werden und ein \textbf{rollback} wird erzwungen, und schon haben wir inkonsistente Daten verursacht.\\\\
+Um solche Szenarien zu verhindert und um ein transparentes und vernünftiges Transaktionsmanagement zu haben ist es nötig ein Phasen-Commit-Protokoll zu implementieren.
+\subsection{2 Phase Commit Protocol}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.30]{Zwei_phasen_commit.png}
+\caption{2-PC}
+\label{2PC}
+\end{figure}
+Eine Lösung dafür ist das 2PC-Protokoll, welches auf dem Grundgedanken basiert, das alle an der Ausführung einer globalen Transaktion T beteiligten Knoten darüber abstimmen, ob T global commited werden darf, oder aborted wird. [Dad96]
+\\\\
+Die Phasen 2PC-Protokolls sind 'Prepare to Commit' und 'Commit/Abort'. In der ersten Phase werden alle Knoten aufgefordert den Commit der Transaktion vorzubereiten, also alle Änderungen zu sichern sowie ihre Stimme zu geben, ob T commited werden darf, oder nicht. [Kem6]
+\\
+In der zweiten Phase wertet der Koordinator des Commits (meist der Knoten, an dem T initiiert wurde) aus, ob der Commit stattfinden darf. Sobald ein einzelner Knoten mit 'abort' abstimmt, darf die Transaktion nicht commited werden, die Knoten müssen anschließend die Sperren auf alle Objekte von T lösen.Es gibt auch noch eine weiterentwickelte Form des 2PC-Protokolls, nämlich das 3PCProtokoll.[Kem6]
+\\
+Es funktioniert genau wie das 2PC-Protokoll, nur das eine Phase, in der abgefragt wird ob ein Commit überhaupt möglich ist, als erstes eingeschoben wird.
+Mehr darüber nachlesen kann man in [Kem6].
+\subsection{Mehrversionenkonzept}
+Mehrversionen-Synchronisationsverfahren (multiversion concurrency control) streben eine Reduzierung an Synchronisationskonflikten an, indem für geänderte Objekte zeitweilig mehrere Versionen geführt werden und Leser ggf. auf ältere Versionen zugreifen. Voraussetzung dabei ist, daß für jede Transaktion vorab Wissen darüber vorliegt, ob sie möglicherweise Änderungen vornimmt.[Rah4]
+\\
+Einer reinen Lesetransaktion T wird dabei während ihrer gesamten Laufzeit eine Sicht auf die Datenbank gewährt, wie sie bei ihrem BOT gültig war; Änderungen, die während ihrer Bearbeitung vorgenommen werden, bleiben für T unsichtbar. [Rah4]
+\\
+Um dies zu realisieren, erzeugt jede erfolgreiche Änderung eine neue Version des modifizierten Objekts; die Versionen werden in einem sogenannten Versionen-Pool verwaltet. [Rah4]
+\\
+Im Gegensatz zu Lesetransaktionen greifen Änderungstransaktionen stets auf die aktuelle Version eines Objektes zu. Für ihre Synchronisation kann praktisch jedes der allgemeinen Synchronisationsverfahren verwendet werden [CM86, AS89].
+\\\\
+Da mit den Versionen jeder Lesetransaktion der bei BOT gültige (und konsistente) DB-Zustand zur Verfügung gestellt wird, ist für Lesetransaktionen keinerlei Synchronisation mehr erforderlich. Weiterhin brauchen sich andere Transaktionen nicht mehr gegen Lesetransaktionen zu synchronisieren.\\
+Damit reduziert sich sowohl die Konfliktwahrscheinlichkeit (und damit die Anzahl von Blockierungen und Rücksetzungen) sowie der Synchronisierungsaufwand (Anzahl von Sperranforderungen, Validierungen etc.). Die Serialisierbarkeit bleibt generell gewahrt.
+\subsection{Deadlocks}
+Eine mit Sperrverfahren einhergehende Interferenz ist die Gefahr von Verklemmungen oder Deadlocks, deren charakterisierende Eigenschaft eine zyklische Wartebeziehung zwischen zwei oder mehr Transaktionen ist. Im verteilten Fall können diese Verklemmungen zwischen Transaktionen verschiedener Rechner auftreten, so dass es zu sogenannten globalen Deadlocks kommt.[Rah4]\\
+Zur Deadlock-Behandlung in zentralisierten sowie in Verteilten DBS kommen einige generelle Strategien in Betracht: Verhütung, Vermeidung, Timeout, Erkennung sowie hybride Strategien. Diese Alternativen werden im Folgenden näher diskutiert. Besonderheiten für Verteilte DBS ergeben sich dabei vor allem bezüglich der Deadlock-Erkennung.[Rah4]\\
+Die Deadlock-Verhütung (prevention) ist dadurch gekennzeichnet, dass die Entstehung von Deadlocks verhindert wird, ohne dass dazu irgendwelche Maßnahmen während der Abarbeitung der Transaktionen erforderlich sind. In diese Kategorie fallen v.a. die sogenannten Preclaiming-Sperrverfahren, bei denen eine Transaktion alle benötigten Sperren bereits bei BOT anfordern muss. Verklemmungen können dabei umgangen werden, indem jede Transaktion ihre Sperren in einer global festgelegten Reihenfolge anfordert, da dann keine zyklischen Wartebeziehungen entstehen können. Die eigentliche Ausführung einer Transaktion kann erst nach Erwerb aller benötigten Sperren beginnen, wobei im Fall von Sperrkonflikten die entsprechenden Wartezeiten in Kauf zu nehmen sind.[Rah4]
+\\
+Ein wesentliches Problem der Deadlock-Verhütung ist, dass bei Beginn einer Transaktion i.a. nur Obermengen der zu referenzierenden Objekte (z.B. ganze Relationen) bekannt sind. Der somit verursachte Grad an Sperrkonflikten ist daher in der Regel inakzeptabel. Dies gilt umso mehr, da die Sperren während der gesamten Transaktionslaufzeit zu halten sind. Im verteilten Fall kommt als weiterer Nachteil hinzu, dass für nicht lokal verwaltete Objekte vor Transaktionsbeginn eigene Kommunikationsvorgänge für die Sperranforderungen erforderlich sind.\\
+Wegen dieser Schwächen hat der Preclaiming-Ansatz keine praktische Relevanz für Datenbanksysteme. Wir gehen daher im Weiteren bei Sperrverfahren davon aus, dass die Sperren während der Transaktionsverarbeitung (unmittelbar vor einem Objektzugriff) angefordert werden.[Rah4]
+\newpage
+
 \bibliographystyle{unsrt}
 \bibliography{Synchronisierung_Konsistenz_Braendli_Weinb_5BHIT}
+\begin{tabular}{ll}
+	{[AS89]} & D. Agrawal \& S. Sengupta. Modular Synchronization in Multiversion Databases\\
+	{[CM86]} & M.J. Carey \& W.A. Muhanna. The Performance of Multiversion Concurrency Control Algorithms. 1986. \\
+	{[Gei1]} & Frank Geisler. Datenbanken Grundlagen und Design. 2011.\\
+	{[Kem6]} & Alfons Kemper, André Eickler. Datenbanksysteme. 2006.\\
+	{[Lau2]} & F. Laux. Verteilte datenbanken. 2002.\\
+	{[Pic5]} & Reinhard Pichler. Verteilte Datenbanken. 2015.\\
+	{[Rah4]} & Erhard Rahm. Grundlagen der verteilten und parallelen Datenbankverarbeitung. 1994.\\	
+\end{tabular}
+
 \listoffigures
 
 \end{document}
